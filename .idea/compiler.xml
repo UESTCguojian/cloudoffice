@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="cloudoffice-generator" />
+        <module name="cloudoffice-server" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="cloudoffice" target="1.8" />
+      <module name="cloudoffice-generator" target="1.8" />
+      <module name="cloudoffice-server" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="cloudoffice" options="-parameters" />
+      <module name="cloudoffice-generator" options="-parameters" />
+      <module name="cloudoffice-server" options="-parameters" />
+    </option>
+  </component>
+</project>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/cloudoffice.iml" filepath="$PROJECT_DIR$/cloudoffice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cloudoffice-generator/cloudoffice-generator.iml" filepath="$PROJECT_DIR$/cloudoffice-generator/cloudoffice-generator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cloudoffice-server/cloudoffice-server.iml" filepath="$PROJECT_DIR$/cloudoffice-server/cloudoffice-server.iml" />
+    </modules>
+  </component>
+</project>
