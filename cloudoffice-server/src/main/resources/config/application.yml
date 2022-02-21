@@ -5,6 +5,19 @@ server:
 spring:
   main:
     allow-circular-references: true
+  redis:
+    timeout: 10000ms # 连接超时时间
+    host: 182.92.169.161 # Redis服务器地址
+    port: 7002 # Redis服务器端口
+    database: 0 # 选择哪个库，默认0库
+    lettuce:
+      pool:
+        max-active: 1024 # 最大连接数，默认 8
+        max-wait: 10000ms # 最大连接阻塞等待时间，单位毫秒，默认 -1
+        max-idle: 200 # 最大空闲连接，默认 8
+        min-idle: 5 # 最小空闲连接，默认 0
+
+
   # 数据源配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -43,6 +56,7 @@ mybatis-plus:
 logging:
   level:
     com.yjxxt.server.mapper: debug
+
 
 jwt:
   # JWT存储的请求头

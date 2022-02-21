@@ -17,7 +17,7 @@ import java.security.Principal;
 
 /**
  * 登录
- * @AUTHOR guojian
+ * @author guojian
  * @create 2022-02-18-2022/2/18
  */
 @Api(tags = "LoginController")
@@ -31,7 +31,7 @@ public class LoginController
     @PostMapping("/login")
     public RespBean login(@RequestBody AdminLoginParam adminLoginParam, HttpServletRequest request)
     {
-        return adminService.login(adminLoginParam.getUsername(), adminLoginParam.getPassword(), request);
+        return adminService.login(adminLoginParam.getUsername(), adminLoginParam.getPassword(), adminLoginParam.getCode(), request);
     }
 
     @ApiOperation(value = "退出登陆")

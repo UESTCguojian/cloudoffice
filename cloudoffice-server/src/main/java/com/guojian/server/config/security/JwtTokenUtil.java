@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @AUTHOR guojian
+ * @author guojian
  * @create 2022-02-18-2022/2/18
  */
 

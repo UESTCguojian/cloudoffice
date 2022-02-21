@@ -2,6 +2,7 @@ package com.guojian.server.mapper;
 
 import com.guojian.server.pojo.Admin;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.springframework.stereotype.Component;
 
 /**
  * <p>
@@ -11,6 +12,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author guojian
  * @since 2022-02-18
  */
-public interface AdminMapper extends BaseMapper<Admin> {
+@Component
+public interface AdminMapper extends BaseMapper<Admin>
+{
 
 }

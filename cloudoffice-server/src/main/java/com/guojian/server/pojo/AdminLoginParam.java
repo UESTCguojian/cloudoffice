@@ -10,7 +10,7 @@ import lombok.experimental.Accessors;
 
 /**
  * 用户登陆实体类
- * @AUTHOR guojian
+ * @author guojian
  * @create 2022-02-18-2022/2/18
  */
 @Data
@@ -23,4 +23,6 @@ public class AdminLoginParam
     private String username;
     @ApiModelProperty(value = "密码", required = true)
     private String password;
+    @ApiModelProperty(value = "验证码", required = true)
+    private String code;
 }

@@ -17,7 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 
 /**
- * @AUTHOR guojian
+ * @author guojian
  * @create 2022-02-18-2022/2/18
  */
 @Configuration
@@ -59,7 +59,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 "/css/**", "/js/**",
                 "/index.html", "/favicon.ico",
                 "/doc.html", "/webjars/**",
-                "/swagger-resources/**", "/v2/api-docs/**");
+                "/swagger-resources/**", "/v2/api-docs/**",
+                "/captcha");
     }
 
     @Override

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.guojian.server.config.security.JwtTokenUtil;
 import com.guojian.server.pojo.Admin;
 import com.guojian.server.mapper.AdminMapper;
+import com.guojian.server.pojo.Menu;
 import com.guojian.server.pojo.RespBean;
 import com.guojian.server.service.IAdminService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -15,9 +16,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -54,8 +57,13 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
      * @return
      */
     @Override
-    public RespBean login(String username, String password, HttpServletRequest request)
+    public RespBean login(String username, String password, String code, HttpServletRequest request)
     {
+        String captcha = (String) request.getSession().getAttribute("captcha");
+        if(StringUtils.isEmpty(code) || !captcha.equalsIgnoreCase(code))
+        {
+            return RespBean.error("验证码输入错误");
+        }
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
         if(null==userDetails || !passwordEncoder.matches(password, userDetails.getPassword()))
         {
