@@ -2,10 +2,12 @@ package com.guojian.server.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.guojian.server.config.security.JwtTokenUtil;
+import com.guojian.server.mapper.RoleMapper;
 import com.guojian.server.pojo.Admin;
 import com.guojian.server.mapper.AdminMapper;
 import com.guojian.server.pojo.Menu;
 import com.guojian.server.pojo.RespBean;
+import com.guojian.server.pojo.Role;
 import com.guojian.server.service.IAdminService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +40,9 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     private AdminMapper adminMapper;
 
     @Autowired
+    private RoleMapper roleMapper;
+
+    @Autowired
     private UserDetailsService userDetailsService;
 
     @Autowired
@@ -51,10 +56,11 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
 
     /**
      * 登陆之后返回Token
-     * @param username
-     * @param password
-     * @param request
-     * @return
+     * @param username 用户名
+     * @param password 密码
+     * @param code 校验码
+     * @param request 登陆请求
+     * @return 登陆Token
      */
     @Override
     public RespBean login(String username, String password, String code, HttpServletRequest request)
@@ -87,13 +93,23 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     }
 
     /**
-     * 根据用户名获取用户
-     * @param username
-     * @return
+     * 根据用户名获取用户类
+     * @param username 用户名
+     * @return 用户类
      */
     @Override
     public Admin getAdminByUserName(String username) {
         return adminMapper.selectOne(new QueryWrapper<Admin>().eq("username", username)
                 .eq("enabled", true));
+    }
+
+    /**
+     * 根据用户id获取角色列表
+     * @param adminId 用户id
+     * @return 角色列表
+     */
+    @Override
+    public List<Role> getRoles(Integer adminId) {
+        return roleMapper.getRoles(adminId);
     }
 }

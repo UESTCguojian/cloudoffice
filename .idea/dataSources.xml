@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="cloudoffice" uuid="d2c02fbb-8a14-4092-bdcf-0523ee95ecba">
-      <driver-ref>mysql.8</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/cloudoffice</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
     <data-source source="LOCAL" name="@182.92.169.161" uuid="4a60b22b-601c-410b-955c-b058c185beff">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>

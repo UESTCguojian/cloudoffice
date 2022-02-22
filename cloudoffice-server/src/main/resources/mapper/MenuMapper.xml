@@ -31,6 +31,14 @@
         </collection>
     </resultMap>
 
+    <resultMap id="MenusWithRole" type="com.guojian.server.pojo.Menu" extends="BaseResultMap">
+        <collection property="roles" ofType="com.guojian.server.pojo.Role" javaType="java.util.List">
+            <id column="rid" property="id" />
+            <result column="rname" property="name"/>
+            <result column="rnameZh" property="nameZh"/>
+        </collection>
+    </resultMap>
+
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id, url, path, component, name, iconCls, keepAlive, requireAuth, parentId, enabled
@@ -65,4 +73,20 @@
             m2.id
     </select>
 
+    <select id="getAllMenusWithRole" resultMap="MenusWithRole">
+        SELECT
+            m.*,
+            r.id AS rid,
+            r.`name` AS rname,
+            r.nameZh AS rnameZh
+        FROM
+            t_menu m,
+            t_menu_role mr,
+            t_role r
+        WHERE
+            m.id = mr.mid
+          AND mr.rid = r.id
+        ORDER BY
+            m.id
+    </select>
 </mapper>
