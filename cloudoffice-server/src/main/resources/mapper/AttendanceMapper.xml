@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guojian.server.mapper.AttendanceMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.guojian.server.pojo.Attendance">
+        <id column="id" property="id" />
+        <result column="employee_id" property="employeeId" />
+        <result column="date" property="date" />
+        <result column="work_time" property="workTime" />
+        <result column="attendance_state" property="attendanceState" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, employee_id, date, work_time, attendance_state, create_time, update_time
+    </sql>
+
+    <select id="getAttendanceByMonth" resultMap="BaseResultMap">
+        select *
+            from work_attendance as w
+            where year(w.date)=#{year}
+            and month(w.date)=#{month}
+            and w.employee_id=#{employeeId}
+    </select>
+</mapper>
