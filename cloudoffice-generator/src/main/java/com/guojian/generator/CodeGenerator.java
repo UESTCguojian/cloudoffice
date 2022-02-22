@@ -67,11 +67,11 @@ public class CodeGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://localhost:3306/cloudoffice?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia" +
+        dsc.setUrl("jdbc:mysql://182.92.169.161:3306/cloudoffice?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia" +
                 "/Shanghai");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
-        dsc.setUsername("root");
-        dsc.setPassword("root");
+        dsc.setUsername("gj");
+        dsc.setPassword("Guo@123456");
         mpg.setDataSource(dsc);
 
         // 包配置
@@ -130,7 +130,7 @@ public class CodeGenerator {
         strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
         strategy.setControllerMappingHyphenStyle(true);
         //表前缀
-        strategy.setTablePrefix("t_");
+        strategy.setTablePrefix("work_");
         mpg.setStrategy(strategy);
         mpg.setTemplateEngine(new FreemarkerTemplateEngine());
         mpg.execute();
