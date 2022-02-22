@@ -3,6 +3,8 @@ package com.guojian.server.service;
 import com.guojian.server.pojo.Position;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -11,6 +13,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author guojian
  * @since 2022-02-18
  */
-public interface IPositionService extends IService<Position> {
-
+public interface IPositionService extends IService<Position>
+{
 }

@@ -51,6 +51,9 @@ mybatis-plus:
   configuration:
     # 自动驼峰命名
     map-underscore-to-camel-case: false
+  global-config:
+    db-config:
+      id-type: auto # id生成规则为自增
 
 ## Mybatis SQL 打印(方法接口所在的包，不是Mapper.xml所在的包)
 logging:

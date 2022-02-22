@@ -2,6 +2,9 @@ package com.guojian.server.mapper;
 
 import com.guojian.server.pojo.Position;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * <p>
@@ -11,6 +14,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author guojian
  * @since 2022-02-18
  */
-public interface PositionMapper extends BaseMapper<Position> {
+@Component
+public interface PositionMapper extends BaseMapper<Position>
+{
 
 }

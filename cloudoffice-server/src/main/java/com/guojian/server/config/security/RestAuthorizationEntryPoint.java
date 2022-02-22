@@ -14,7 +14,7 @@ import java.io.PrintWriter;
 
 /**
  * @author guojian
- * @create 2022-02-18-2022/2/18
+ * @since 2022-02-18-2022/2/18
  */
 @Component
 public class RestAuthorizationEntryPoint implements AuthenticationEntryPoint
