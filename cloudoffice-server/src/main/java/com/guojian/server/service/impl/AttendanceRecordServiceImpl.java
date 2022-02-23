@@ -1,6 +1,7 @@
 package com.guojian.server.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.guojian.server.commons.AttendanceState;
 import com.guojian.server.mapper.AttendanceMapper;
 import com.guojian.server.pojo.Admin;
@@ -15,11 +16,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -42,7 +45,7 @@ public class AttendanceRecordServiceImpl extends ServiceImpl<AttendanceRecordMap
      * @param position:
       * @return RespBean
      * @author smy
-     * @description 位置判断，不能重复上班
+     * @description 上班打卡 TODO 位置判断
      * @date 2022/2/22 9:42
      */
     @Override
@@ -80,7 +83,7 @@ public class AttendanceRecordServiceImpl extends ServiceImpl<AttendanceRecordMap
      * @param position:
       * @return RespBean
      * @author smy
-     * @description 位置的判断，不能重复下班
+     * @description 下班打卡 TODO 位置的判断
      * @date 2022/2/22 10:49
      */
     @Override
@@ -123,9 +126,11 @@ public class AttendanceRecordServiceImpl extends ServiceImpl<AttendanceRecordMap
         attendance.setDate(date);
         attendance.setWorkTime((double)duration.toHours());
         if(duration.toHours()<8){
-            return RespBean.error("工时不够，不能下班");
+            attendance.setAttendanceState(AttendanceState.EARLY_QUIT);
+            //return RespBean.error("工时不够，不能下班");
+        }else{
+            attendance.setAttendanceState(AttendanceState.ATTEND);
         }
-        attendance.setAttendanceState(AttendanceState.ATTEND);
         final int insert1 = attendanceMapper.insert(attendance);
         return RespBean.success("下班打卡成功");
     }
@@ -138,22 +143,43 @@ public class AttendanceRecordServiceImpl extends ServiceImpl<AttendanceRecordMap
      * @date 2022/2/22 16:17
      */
     @Override
-    public RespBean queryByEmployeeId(int employeeId) {
+    public RespBean queryByEmployeeId(int employeeId,int cur,int size) {
+        Page<AttendanceRecord> page=new Page<>(cur,size);
         QueryWrapper<AttendanceRecord> wrapper=new QueryWrapper<>();
         wrapper.eq("employee_id",employeeId);
-        List<AttendanceRecord> attendanceRecords = attendanceRecordMapper.selectList(wrapper);
-        return RespBean.success("查询成功",attendanceRecords);
+        Page<AttendanceRecord> page1 = attendanceRecordMapper.selectPage(page, wrapper);
+       // List<AttendanceRecord> attendanceRecords = attendanceRecordMapper.selectList(wrapper);
+        return RespBean.success("查询成功",page1.getRecords());
     }
 
     /**
      * @param date:
       * @return RespBean
      * @author smy
-     * @description TODO
+     * @description 查询指定日期的出勤记录
      * @date 2022/2/22 16:17
      */
     @Override
-    public RespBean queryByDate(LocalDate date) {
-        return null;
+    public RespBean queryByDate(String date) {
+        Integer adminId = ((Admin) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        QueryWrapper<AttendanceRecord> wrapper=new QueryWrapper<>();
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate =LocalDate.parse(date,fmt);
+
+        wrapper.eq("attendance_date",localDate);
+        wrapper.eq("employee_id",adminId);
+        List<AttendanceRecord> attendanceRecords = attendanceRecordMapper.selectList(wrapper);
+        return RespBean.success("查询成功",attendanceRecords);
+    }
+
+    /**
+     * @return void
+     * @author smy
+     * @description TODO
+     * @date 2022/2/23 15:27
+     */
+    @Override
+    public void setAbsent() {
+        //TODO 获取所有员工ID，如果今日没有下班记录，设置为缺席
     }
 }

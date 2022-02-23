@@ -24,5 +24,118 @@
             where year(w.date)=#{year}
             and month(w.date)=#{month}
             and w.employee_id=#{employeeId}
+              and w.attendance_state=1
+    </select>
+    <select id="getLeaveByMonth" resultMap="BaseResultMap">
+        select *
+        from work_attendance as w
+        where year(w.date)=#{year}
+          and month(w.date)=#{month}
+          and w.employee_id=#{employeeId}
+          and w.attendance_state=2
+    </select>
+    <select id="getAbsentByMonth" resultMap="BaseResultMap">
+        select *
+        from work_attendance as w
+        where year(w.date)=#{year}
+          and month(w.date)=#{month}
+          and w.employee_id=#{employeeId}
+          and w.attendance_state=3
+    </select>
+    <select id="getEarlyQuitByMonth" resultMap="BaseResultMap">
+        select *
+        from work_attendance as w
+        where year(w.date)=#{year}
+          and month(w.date)=#{month}
+          and w.employee_id=#{employeeId}
+          and w.attendance_state=4
+    </select>
+    <select id="getAttendanceByYear" resultMap="BaseResultMap">
+        select *
+        from work_attendance as w
+        where year(w.date)=#{year}
+          and w.employee_id=#{employeeId}
+          and w.attendance_state=1
+    </select>
+    <select id="getLeaveByYear" resultMap="BaseResultMap">
+        select *
+        from work_attendance as w
+        where year(w.date)=#{year}
+          and w.employee_id=#{employeeId}
+          and w.attendance_state=2
+    </select>
+    <select id="getAbsentByYear" resultMap="BaseResultMap">
+        select *
+        from work_attendance as w
+        where year(w.date)=#{year}
+          and w.employee_id=#{employeeId}
+          and w.attendance_state=3
+    </select>
+    <select id="getEarlyQuitByYear" resultMap="BaseResultMap">
+        select *
+        from work_attendance as w
+        where year(w.date)=#{year}
+          and w.employee_id=#{employeeId}
+          and w.attendance_state=4
+    </select>
+    <select id="countAttendanceByMonth" resultType="int">
+    select count(*)
+    from work_attendance as w
+    where year(w.date)=#{year}
+      and month(w.date)=#{month}
+      and w.employee_id=#{employeeId}
+      and w.attendance_state=1
+</select>
+    <select id="countLeaveByMonth" resultType="int">
+        select count(*)
+        from work_attendance as w
+        where year(w.date)=#{year}
+          and month(w.date)=#{month}
+          and w.employee_id=#{employeeId}
+          and w.attendance_state=2
+    </select>
+    <select id="countAbsentByMonth" resultType="int">
+        select count(*)
+        from work_attendance as w
+        where year(w.date)=#{year}
+          and month(w.date)=#{month}
+          and w.employee_id=#{employeeId}
+          and w.attendance_state=3
+    </select>
+    <select id="countEarlyQuitByMonth" resultType="int">
+        select count(*)
+        from work_attendance as w
+        where year(w.date)=#{year}
+          and month(w.date)=#{month}
+          and w.employee_id=#{employeeId}
+          and w.attendance_state=4
+    </select>
+    <select id="countAttendanceByYear" resultType="int">
+        select count(*)
+        from work_attendance as w
+        where year(w.date)=#{year}
+          and w.employee_id=#{employeeId}
+          and w.attendance_state=1
+    </select>
+    <select id="countLeaveByYear" resultType="int">
+        select count(*)
+        from work_attendance as w
+        where year(w.date)=#{year}
+          and w.employee_id=#{employeeId}
+          and w.attendance_state=2
+    </select>
+    <select id="countAbsentByYear" resultType="int">
+        select count(*)
+        from work_attendance as w
+        where year(w.date)=#{year}
+          and w.employee_id=#{employeeId}
+          and w.attendance_state=3
+    </select>
+    <select id="countEarlyQuitByYear" resultType="int">
+        select count(*)
+        from work_attendance as w
+        where year(w.date)=#{year}
+          and w.employee_id=#{employeeId}
+          and w.attendance_state=4
     </select>
 </mapper>

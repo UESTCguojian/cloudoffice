@@ -18,6 +18,7 @@ public interface IAttendanceRecordService extends IService<AttendanceRecord> {
 
     RespBean clockIn(String position);
     RespBean clockOut(String position);
-    RespBean queryByEmployeeId(int employeeId);
-    RespBean queryByDate(LocalDate date);
+    RespBean queryByEmployeeId(int employeeId,int size,int cur);
+    RespBean queryByDate(String date);
+    void setAbsent();
 }
