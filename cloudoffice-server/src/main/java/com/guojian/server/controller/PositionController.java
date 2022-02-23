@@ -39,7 +39,6 @@ public class PositionController
     public RespBean addPosition(@RequestBody Position position)
     {
         position.setCreateDate(LocalDateTime.now());
-        System.out.println(position.getId());
         if(positionService.save(position))
         {
             return RespBean.success("添加成功");
