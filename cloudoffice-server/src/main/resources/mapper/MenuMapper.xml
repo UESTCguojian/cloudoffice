@@ -39,6 +39,20 @@
         </collection>
     </resultMap>
 
+    <!--  映射结果：三级菜单ID和名字  -->
+    <resultMap id="MenusWithChildren" type="com.guojian.server.pojo.Menu" extends="BaseResultMap">
+        <id column="id1" property="id"/>
+        <result column="name1" property="name"/>
+        <collection property="childrenMenu" ofType="com.guojian.server.pojo.Menu" javaType="java.util.List">
+            <id column="id2" property="id"/>
+            <id column="name2" property="name"/>
+            <collection property="childrenMenu" ofType="com.guojian.server.pojo.Menu" javaType="java.util.List">
+                <id column="id3" property="id"/>
+                <id column="name3" property="name"/>
+            </collection>
+        </collection>
+    </resultMap>
+
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id, url, path, component, name, iconCls, keepAlive, requireAuth, parentId, enabled
@@ -73,6 +87,7 @@
             m2.id
     </select>
 
+    <!--  查询所有的菜单并与其对应的角色进行拼接  -->
     <select id="getAllMenusWithRole" resultMap="MenusWithRole">
         SELECT
             m.*,
@@ -88,5 +103,12 @@
           AND mr.rid = r.id
         ORDER BY
             m.id
+    </select>
+
+    <!--  查询所有的菜单及其子菜单  -->
+    <select id="getAllMenus" resultMap="MenusWithChildren">
+        SELECT m1.id as id1, m1.name as name1, m2.id as id2, m2.name as name2, m3.id as id3, m3.name as name3
+        FROM t_menu as m1, t_menu as m2, t_menu as m3
+        WHERE m1.id = m2.parentId AND m2.id = m3.parentId AND m3.enabled = TRUE;
     </select>
 </mapper>

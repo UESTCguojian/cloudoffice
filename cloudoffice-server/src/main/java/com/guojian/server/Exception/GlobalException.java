@@ -1,5 +1,6 @@
 package com.guojian.server.Exception;
 
+import com.fasterxml.jackson.core.JsonParseException;
 import com.guojian.server.pojo.RespBean;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -29,5 +30,11 @@ public class GlobalException
     public RespBean DuplicateKeyException(DuplicateKeyException e)
     {
         return RespBean.error("重复键值数据，操作失败");
+    }
+
+    @ExceptionHandler(JsonParseException.class)
+    public RespBean JsonParseException(JsonParseException e)
+    {
+        return RespBean.error("JSON解析错误，操作失败");
     }
 }
