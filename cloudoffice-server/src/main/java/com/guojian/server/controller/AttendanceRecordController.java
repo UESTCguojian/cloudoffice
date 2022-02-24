@@ -7,13 +7,10 @@ import com.guojian.server.service.IAttendanceRecordService;
 import com.guojian.server.service.IAttendanceService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDate;
 
 /**
  * <p>
@@ -46,10 +43,16 @@ public class AttendanceRecordController {
     }
 
     @ApiOperation(value = "查询某员工的考勤记录")
-    @PostMapping("/queryByEmployeeId")
-    public RespBean queryByEmployeeId(@RequestBody int employeeId)
+    @GetMapping("/queryByEmployeeId")
+    public RespBean queryByEmployeeId(int employeeId,int size,int cur)
     {
-        return attendanceRecordService.queryByEmployeeId(employeeId);
+        return attendanceRecordService.queryByEmployeeId(employeeId,cur,size);
     }
 
+    @ApiOperation(value = "查询某员工某天的记录")
+    @GetMapping("/queryByDate")
+    public RespBean queryByDate(String date)
+    {
+        return attendanceRecordService.queryByDate(date);
+    }
 }

@@ -7,8 +7,8 @@ package com.guojian.server.commons;
  */
 public class AttendanceState {
     public static int ATTEND=1;
-    public static int EARLY_QUICK=2;
+    public static int LEAVE=2;
     public static int ABSENT=3;
-    public static int LEAVE=4;
+    public static int EARLY_QUIT=4;
     public static int RELAX=5;
 }
