@@ -1,5 +1,6 @@
 package com.guojian.server.pojo;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -19,7 +20,7 @@ import lombok.experimental.Accessors;
  * @since 2022-02-18
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = false, of = "name")
 @Accessors(chain = true)
 @TableName("t_politics_status")
 @ApiModel(value="PoliticsStatus对象", description="")
@@ -32,6 +33,7 @@ public class PoliticsStatus implements Serializable {
     private Integer id;
 
     @ApiModelProperty(value = "政治面貌")
+    @Excel(name = "政治面貌")
     private String name;
 
 

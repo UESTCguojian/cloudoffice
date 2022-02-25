@@ -14,4 +14,11 @@
         id, adminId, rid
     </sql>
 
+    <!--  为操作员添加角色  -->
+    <insert id="addRolesForAdmin">
+        insert into t_admin_role (adminId, rid) values
+        <foreach collection="roleIds" item = "rid" separator=",">
+            (#{adminId}, #{rid})
+        </foreach>
+    </insert>
 </mapper>

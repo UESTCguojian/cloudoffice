@@ -38,10 +38,24 @@ public interface IAdminService extends IService<Admin>
     Admin getAdminByUserName(String username);
 
     /**
-     * 根据用户id获取角色列表
+     * 根据操作员id获取角色列表
      *
      * @param adminId 用户id
      * @return 角色列表
      */
     List<Role> getRoles(Integer adminId);
+
+    /**
+     * 获取所有的操作员以及其角色
+     * @return  操作员列表
+     */
+    List<Admin> getAllAdminsWithRole();
+
+    /**
+     * 更新操作员的角色
+     * @param adminId 操作员ID
+     * @param roleIds 角色的ID数组
+     * @return 更新结果
+     */
+    RespBean updateAdminRole(Integer adminId, Integer[] roleIds);
 }

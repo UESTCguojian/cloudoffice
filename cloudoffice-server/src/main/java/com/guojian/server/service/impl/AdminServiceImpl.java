@@ -2,14 +2,13 @@ package com.guojian.server.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.guojian.server.config.security.JwtTokenUtil;
+import com.guojian.server.mapper.AdminRoleMapper;
 import com.guojian.server.mapper.RoleMapper;
-import com.guojian.server.pojo.Admin;
+import com.guojian.server.pojo.*;
 import com.guojian.server.mapper.AdminMapper;
-import com.guojian.server.pojo.Menu;
-import com.guojian.server.pojo.RespBean;
-import com.guojian.server.pojo.Role;
 import com.guojian.server.service.IAdminService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.guojian.server.utils.AdminUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -18,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -41,6 +41,9 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
 
     @Autowired
     private RoleMapper roleMapper;
+
+    @Autowired
+    private AdminRoleMapper adminRoleMapper;
 
     @Autowired
     private UserDetailsService userDetailsService;
@@ -111,5 +114,34 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     @Override
     public List<Role> getRoles(Integer adminId) {
         return roleMapper.getRoles(adminId);
+    }
+
+    /**
+     * 获取所有的操作员以及其角色
+     * @return  操作员列表
+     */
+    @Override
+    public List<Admin> getAllAdminsWithRole()
+    {
+        return adminMapper.getAllAdmins();
+    }
+
+    /**
+     * 更新操作员的角色
+     * @param adminId 操作员ID
+     * @param roleIds 角色的ID数组
+     * @return 更新结果
+     */
+    @Override
+    @Transactional
+    public RespBean updateAdminRole(Integer adminId, Integer[] roleIds)
+    {
+        adminRoleMapper.delete(new QueryWrapper<AdminRole>().eq("adminId", adminId));
+        Integer result = adminRoleMapper.addRolesForAdmin(adminId, roleIds);
+        if(roleIds.length == result)
+        {
+            return RespBean.success("更新成功");
+        }
+        return RespBean.error("更新失败");
     }
 }

@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/cloudoffice.iml" filepath="$PROJECT_DIR$/cloudoffice.iml" />
       <module fileurl="file://$PROJECT_DIR$/cloudoffice-generator/cloudoffice-generator.iml" filepath="$PROJECT_DIR$/cloudoffice-generator/cloudoffice-generator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cloudoffice-mail/cloudoffice-mail.iml" filepath="$PROJECT_DIR$/cloudoffice-mail/cloudoffice-mail.iml" />
       <module fileurl="file://$PROJECT_DIR$/cloudoffice-server/cloudoffice-server.iml" filepath="$PROJECT_DIR$/cloudoffice-server/cloudoffice-server.iml" />
     </modules>
   </component>

@@ -7,6 +7,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="cloudoffice-mail" />
         <module name="cloudoffice-generator" />
         <module name="cloudoffice-server" />
       </profile>
@@ -14,6 +15,7 @@
     <bytecodeTargetLevel>
       <module name="cloudoffice" target="1.8" />
       <module name="cloudoffice-generator" target="1.8" />
+      <module name="cloudoffice-mail" target="1.8" />
       <module name="cloudoffice-server" target="1.8" />
     </bytecodeTargetLevel>
   </component>
@@ -21,6 +23,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="cloudoffice" options="-parameters" />
       <module name="cloudoffice-generator" options="-parameters" />
+      <module name="cloudoffice-mail" options="-parameters" />
       <module name="cloudoffice-server" options="-parameters" />
     </option>
   </component>

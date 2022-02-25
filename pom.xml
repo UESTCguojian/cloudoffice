@@ -6,6 +6,7 @@
     <modules>
         <module>cloudoffice-server</module>
         <module>cloudoffice-generator</module>
+        <module>cloudoffice-mail</module>
     </modules>
 
     <parent>
