@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/attendance")
+@Api("考勤管理")
 public class AttendanceController {
 
     @Autowired

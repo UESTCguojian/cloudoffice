@@ -16,15 +16,15 @@ import java.sql.SQLIntegrityConstraintViolationException;
 @RestControllerAdvice
 public class GlobalException
 {
-    @ExceptionHandler(SQLException.class)
-    public RespBean MySqlException(SQLException e)
-    {
-        if (e instanceof SQLIntegrityConstraintViolationException)
-        {
-            return RespBean.error("该数据有关联数据，不可被操作");
-        }
-        return RespBean.error("数据库异常，操作失败");
-    }
+//    @ExceptionHandler(SQLException.class)
+//    public RespBean MySqlException(SQLException e)
+//    {
+//        if (e instanceof SQLIntegrityConstraintViolationException)
+//        {
+//            return RespBean.error("该数据有关联数据，不可被操作");
+//        }
+//        return RespBean.error("数据库异常，操作失败");
+//    }
 
     @ExceptionHandler(DuplicateKeyException.class)
     public RespBean DuplicateKeyException(DuplicateKeyException e)

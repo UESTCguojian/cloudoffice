@@ -73,6 +73,9 @@ public class Admin implements Serializable, UserDetails {
     @TableField(exist = false)
     private List<Role> roles;
 
+    @TableId(value = "employeeId")
+    private Integer employeeId;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> authorities = roles.stream().map(role -> new SimpleGrantedAuthority(role.getName()))

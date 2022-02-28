@@ -5,6 +5,7 @@ import com.guojian.server.pojo.AdminLoginParam;
 import com.guojian.server.pojo.RespBean;
 import com.guojian.server.service.IAttendanceRecordService;
 import com.guojian.server.service.IAttendanceService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,7 @@ import java.time.LocalDate;
  */
 @RestController
 @RequestMapping("/attendance-record")
+@Api("考勤记录管理")
 public class AttendanceRecordController {
 
     @Autowired
